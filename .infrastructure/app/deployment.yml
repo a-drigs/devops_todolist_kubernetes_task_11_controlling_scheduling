@@ -85,12 +85,13 @@ spec:
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - nodeSelectorTerms:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - todoapp
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - todoapp
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -98,7 +99,7 @@ spec:
                   - key: app
                     operator: In
                     values:
-                      - todoapp
+                      - mysql
               topologyKey: "kubernetes.io/hostname"
       volumes:
       - name: data

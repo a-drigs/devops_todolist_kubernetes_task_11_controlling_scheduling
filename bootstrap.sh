@@ -8,7 +8,7 @@ until kubectl cluster-info >/dev/null 2>&1; do
 done
 echo "Kubernetes API is available!"
 
-kubectl taint nodes kind-worker kind-worker2 app=mysql:NoSchedule
+kubectl get nodes -l app=mysql -o name | xargs -r kubectl taint nodes app=mysql:NoSchedule
 
 kubectl apply -f .infrastructure/mysql/ns.yml
 kubectl apply -f .infrastructure/mysql/configMap.yml

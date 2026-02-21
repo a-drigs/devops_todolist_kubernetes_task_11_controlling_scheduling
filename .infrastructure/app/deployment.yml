@@ -99,7 +99,7 @@ spec:
                   - key: app
                     operator: In
                     values:
-                      - mysql
+                      - todoapp
               topologyKey: "kubernetes.io/hostname"
       volumes:
       - name: data
